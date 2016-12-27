@@ -1,3 +1,4 @@
+window.onload=function(){
 // create the container div
 var d = document.createElement('div');
 // create the container div
@@ -21,14 +22,14 @@ for (var i = 0; i < divs.length; i++) {
 // finally append the container div to body
 body.appendChild(d);
 
-var block = document.querySelector('.elastic__block');
+var block = $('.elastic__block');
 var elWidth = $('.el').css('width');
 var elheight = $('.el').css('height');
 $('.elastic__block').css('width', 'calc(' + elWidth + ' + 10px)');
 $('.elastic__block').css('height', 'calc(' + elheight + ' + 10px)');
 
-document.querySelector('.elastic__block').setAttribute('data-morph-active', 'M110,110 C110,110 84,118 60,118 C31,118 10,110 10,110 S6,94 6,60 C6,31 10,10 10,10 S31,0 60,0 C91,0 110,10 110,10 S114,27 114,61 C114,93 110,110 110,110 L110,110 z');
-document.querySelector('.elastic__block').setAttribute('data-morph-reset', 'M110,110 C110,110 71,110 60,110 C46,110 10,110 10,110 S10,70 10,58 C10,45 10,10 10,10 S47,10 60,10 C72,10 110,10 110,10 S110,45 110,58 C110,70 110,110 110,110 z');
+$('.elastic__block').attr('data-morph-active', 'M110,110 C110,110 84,118 60,118 C31,118 10,110 10,110 S6,94 6,60 C6,31 10,10 10,10 S31,0 60,0 C91,0 110,10 110,10 S114,27 114,61 C114,93 110,110 110,110 L110,110 z');
+$('.elastic__block').attr('data-morph-reset', 'M110,110 C110,110 71,110 60,110 C46,110 10,110 10,110 S10,70 10,58 C10,45 10,10 10,10 S47,10 60,10 C72,10 110,10 110,10 S110,45 110,58 C110,70 110,110 110,110 z');
 
 var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -36,10 +37,10 @@ var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 document.querySelector('.elastic__block').appendChild(svg);
 document.querySelector('.elastic__block svg').appendChild(path);
 
-var blockPath = document.querySelector('.elastic__block path')
-blockPath.setAttribute("transform", "translate(" + (block.offsetWidth) / -10 + "," + (block.offsetHeight) / -10 + ") scale(" + (block.offsetWidth) / 100 + "," + (block.offsetHeight) / 100 + ")");
+var blockPath = $('.elastic__block path')
+blockPath.attr("transform", "translate(" + (block.width()) / -10 + "," + (block.height()) / -10 + ") scale(" + (block.width()) / 100 + "," + (block.height()) / 100 + ")");
 
-document.querySelector('.elastic__block svg path').setAttribute('d', 'M110,110 C110,110 71,110 60,110 C46,110 10,110 10,110 S10,70 10,58 C10,45 10,10 10,10 S47,10 60,10 C72,10 110,10 110,10 S110,45 110,58 C110,70 110,110 110,110 z');
+$('.elastic__block svg path').attr('d', 'M110,110 C110,110 71,110 60,110 C46,110 10,110 10,110 S10,70 10,58 C10,45 10,10 10,10 S47,10 60,10 C72,10 110,10 110,10 S110,45 110,58 C110,70 110,110 110,110 z');
 
 (function() {
 
@@ -110,3 +111,5 @@ document.querySelector('.elastic__block svg path').setAttribute('d', 'M110,110 C
   });
 
 })();
+
+}
