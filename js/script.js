@@ -3,7 +3,7 @@ var d = document.createElement('div');
 // create the container div
 var dv = document.createElement('div');
 // get all divs
-var divs = document.getElementsByTagName('input');
+var divs = $('.el');
 // get the body element
 var body = document.getElementsByTagName('body')[0];
 // apply class to container div
