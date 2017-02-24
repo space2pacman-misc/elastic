@@ -1,6 +1,8 @@
 Elastic framework 0.1b
 
-how to use:
+Latest demo : https://rawgit.com/space2pacman/elastic/master/index.htm
+
+How to use:
 
 <pre>
 &lt;script type="text/javascript" src="snap.svg-min.js"&gt;&lt;/script&gt;
@@ -9,5 +11,5 @@ how to use:
 
 add class <b>el</b> in your code
 <pre>
-&lt;input class="el" type="text"&gt;
+&lt;input class="<b>el</b>" type="text"&gt;
 </pre>
