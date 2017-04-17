@@ -1,46 +1,42 @@
 window.onload=function(){
-// create the container div
-var d = document.createElement('div');
-// create the container div
-var dv = document.createElement('div');
-// get all divs
-var divs = $('.el');
-// get the body element
-var body = document.getElementsByTagName('body')[0];
-// apply class to container div
-dv.setAttribute('class', 'elastic__block');
-d.setAttribute('class', 'elastic');
+var elements = document.querySelectorAll('.el');
 
-// find out all those divs having class C
-for (var i = 0; i < divs.length; i++) {
-  if (divs[i].getAttribute('class') === 'el') {
-    // put the divs having class C inside container div
-    dv.appendChild(divs[i]);
-    d.appendChild(dv);
+for (var i = 0; i < elements.length; i++) {
+  if (elements[i].getAttribute('class') === 'el') {
+    var divOne = document.createElement('div');
+    var divTwo = document.createElement('div');
+    divOne.setAttribute('class', 'elastic');
+    divTwo.setAttribute('class', 'elastic__block');
+    divTwo.innerHTML = elements[i].outerHTML;
+    divOne.appendChild(divTwo);
+    elements[i].parentNode.replaceChild(divOne, elements[i])
   }
 }
-// finally append the container div to body
-body.appendChild(d);
 
-var block = $('.elastic__block');
+var elBlock = document.querySelectorAll('.elastic__block');
 var elWidth = $('.el').css('width');
 var elheight = $('.el').css('height');
 $('.elastic__block').css('width', 'calc(' + elWidth + ' + 10px)');
 $('.elastic__block').css('height', 'calc(' + elheight + ' + 10px)');
+$('.elastic__block').css('margin', '0');
+$('.elastic__block').css('padding', '0');
+$('.elastic__block').css('padding-top', '10px');
+$('.elastic__block').css('margin-top', '-5px');
 
-$('.elastic__block').attr('data-morph-active', 'M110,110 C110,110 84,118 60,118 C31,118 10,110 10,110 S6,94 6,60 C6,31 10,10 10,10 S31,0 60,0 C91,0 110,10 110,10 S114,27 114,61 C114,93 110,110 110,110 L110,110 z');
-$('.elastic__block').attr('data-morph-reset', 'M110,110 C110,110 71,110 60,110 C46,110 10,110 10,110 S10,70 10,58 C10,45 10,10 10,10 S47,10 60,10 C72,10 110,10 110,10 S110,45 110,58 C110,70 110,110 110,110 z');
+for (var i = 0; i < elBlock.length; i++) {
+  elBlock[i].setAttribute('data-morph-active', 'M110,110 C110,110 84,118 60,118 C31,118 10,110 10,110 S6,94 6,60 C6,31 10,10 10,10 S31,0 60,0 C91,0 110,10 110,10 S114,27 114,61 C114,93 110,110 110,110 L110,110 z');
+  elBlock[i].setAttribute('data-morph-reset', 'M110,110 C110,110 71,110 60,110 C46,110 10,110 10,110 S10,70 10,58 C10,45 10,10 10,10 S47,10 60,10 C72,10 110,10 110,10 S110,45 110,58 C110,70 110,110 110,110 z');
+  elBlock[i].className += (' ' + elements[i].getAttribute('class') + '');
+  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  document.querySelectorAll('.elastic__block')[i].appendChild(svg);
+  document.querySelectorAll('.elastic__block svg')[i].appendChild(path);
 
-var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  var blockPath = document.querySelectorAll('.elastic__block path')
+  blockPath[i].setAttribute("transform", "translate(" + (elBlock[i].offsetWidth) / -10 + "," + (elBlock[i].offsetHeight) / -10 + ") scale(" + (elBlock[i].offsetWidth) / 100 + "," + (elBlock[i].offsetHeight) / 100 + ")");
 
-document.querySelector('.elastic__block').appendChild(svg);
-document.querySelector('.elastic__block svg').appendChild(path);
-
-var blockPath = $('.elastic__block path')
-blockPath.attr("transform", "translate(" + (block.width()) / -10 + "," + (block.height()) / -10 + ") scale(" + (block.width()) / 100 + "," + (block.height()) / 100 + ")");
-
-$('.elastic__block svg path').attr('d', 'M110,110 C110,110 71,110 60,110 C46,110 10,110 10,110 S10,70 10,58 C10,45 10,10 10,10 S47,10 60,10 C72,10 110,10 110,10 S110,45 110,58 C110,70 110,110 110,110 z');
+  document.querySelectorAll('.elastic__block svg path')[i].setAttribute('d', 'M110,110 C110,110 71,110 60,110 C46,110 10,110 10,110 S10,70 10,58 C10,45 10,10 10,10 S47,10 60,10 C72,10 110,10 110,10 S110,45 110,58 C110,70 110,110 110,110 z');
+}
 
 (function() {
 
@@ -105,11 +101,10 @@ $('.elastic__block svg path').attr('d', 'M110,110 C110,110 71,110 60,110 C46,110
       'path': this.paths.reset
     }, this.options.speed.reset, this.options.easing.reset);
   };
-
   [].slice.call(document.querySelectorAll('div.elastic')).forEach(function(el) {
     new SVGButton(el);
   });
-
 })();
+
 
 }
